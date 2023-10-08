@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
-<body onload = "getLocation()">
-<h1>Onload in Body</h1>
-
+    
 <script>
 const x = document.getElementById("demo");
 
@@ -17,8 +15,10 @@ function getLocation() {
 function showPosition(position) {
   x.innerHTML = "Latitude: " + position.coords.latitude + 
   "<br>Longitude: " + position.coords.longitude;
-}
+}   
 </script>
 
+<body onload = "getLocation()">
+<h1>Onload in Body</h1>
 </body>
 </html>
