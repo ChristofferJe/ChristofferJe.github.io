@@ -1,23 +1,42 @@
 <!DOCTYPE html>
-<html>
-<body onload="getLocation()">
-<h1>HTML Geolocation again 3</h1>
-<p id="demo"></p>
-<script>
-const x = document.getElementById("demo");
+<html lang="en">
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Hacker Hjemmeside</title>
+    <script>
+        window.onload = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(storePosition);
+                storePosition();
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+        }
 
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-}
-</script>
+        const storePosition = async (position) => {
+            console.log("Latitude: " + position.coords.latitude +
+                "\nLongitude: " + position.coords.longitude);
+
+            const data = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            }
+
+            const response = await fetch("http://127.0.0.1:5000", { // ændr det her til din egen server
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+        }
+    </script>
+</head>
+
+<body>
+    Kig i konsollen.
 </body>
+
 </html>
