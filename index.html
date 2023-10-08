@@ -4,12 +4,16 @@
 <h1>HTML Geolocation</h1>
 
 <script>
-const x = document.getElementById("demo");
+const x = document.getElementById("demo"); 
 
-if (navigator.geolocation) {
+
+
+window.onload = function getLocation() {
+  if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
-} else { 
+  } else {
     x.innerHTML = "Geolocation is not supported by this browser.";
+  }
 }
 
 
